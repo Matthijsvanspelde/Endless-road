@@ -24,6 +24,7 @@ public class Movement : MonoBehaviour
 
     private void Move()
     {
+        
         xInput = Input.GetAxis("Horizontal");
         yInput = Input.GetAxis("Vertical");
         Vector3 PlayerVelocity = new Vector3(xInput * MovementSpeed, rb.velocity.y, yInput * MovementSpeed);

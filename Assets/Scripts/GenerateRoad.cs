@@ -9,21 +9,21 @@ public class GenerateRoad : MonoBehaviour
 
     void Start()
     {
-        GameObject clone = Instantiate(road, new Vector3(0, 0, 0), Quaternion.identity);
+        Instantiate(road, new Vector3(0, 0, 0), Quaternion.identity);
         coroutine = WaitAndInstantiate(interval);
         StartCoroutine(coroutine);
     }
 
     private IEnumerator WaitAndInstantiate(float waitTime)
     {
-        var inc = 10;
+        float pos = 0;
         while (true)
-        {
+        {          
             yield return new WaitForSeconds(waitTime);
-            GameObject clone = Instantiate(road, new Vector3(0, 0, inc), Quaternion.identity);
+            pos += road.GetComponent<Tile>().GetSpawnPosition().position.z;
+            GameObject clone = Instantiate(road, new Vector3(0, 0, pos), Quaternion.identity);
             Destroy(clone, 10);
-            print("Road generated");
-            inc += 10;
+            print(pos);
         }
         
     }
